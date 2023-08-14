@@ -1,0 +1,20 @@
+[
+  {
+    "model": "levelupapi.game",
+    "pk": 1,
+    "fields": {
+      "title": "Monopoly",
+      "creator": 1,
+      "game_type": 1
+    }
+  },
+  {
+    "model": "levelupapi.game",
+    "pk": 2,
+    "fields": {
+      "title": "Sorry",
+      "creator": 1,
+      "game_type": 1
+    }
+  }
+]

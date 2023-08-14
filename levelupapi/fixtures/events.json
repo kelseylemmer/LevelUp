@@ -1,0 +1,24 @@
+[
+  {
+    "model": "levelupapi.event",
+    "pk": 1,
+    "fields": {
+      "title": "Lets Play Monopoly",
+      "date_time": "2023-01-04 20:14:03",
+      "organizer": 1,
+      "game": 1,
+      "location": "30 Parkway Street"
+    }
+  },
+  {
+    "model": "levelupapi.event",
+    "pk": 2,
+    "fields": {
+      "title": "Lets Play Sorry",
+      "date_time": "2023-02-01 17:13:01",
+      "organizer": 1,
+      "game": 2,
+      "location": "123 Boulevard Road"
+    }
+  }
+]
