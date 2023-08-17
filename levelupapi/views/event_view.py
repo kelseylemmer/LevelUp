@@ -4,6 +4,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from levelupapi.models import Event, Gamer, Game
+from django.contrib.auth.models import User
 
 
 class EventView(ViewSet):
@@ -29,6 +30,26 @@ class EventView(ViewSet):
         events = Event.objects.all()
         serializer = EventSerializer(events, many=True)
         return Response(serializer.data)
+
+    def create(self, request):
+        """Handle POST requests for creating a new event
+
+        Returns:
+            Response -- JSON serialized event record
+        """
+        organizer = User.objects.get(pk=request.data["organizer"])
+        game = Game.objects.get(pk=request.data["game"])
+
+        new_event = Event()
+        new_event.title = request.data["title"]
+        new_event.date_time = request.data["date_time"]
+        new_event.organizer = organizer
+        new_event.game = game
+        new_event.location = request.data["location"]
+        new_event.save()
+
+        serialized = EventSerializer(letteeventr, many=False)
+        return Response(serialized.data, status=status.HTTP_201_CREATED)
 
 
 class EventOrganizerSerializer(serializers.ModelSerializer):
