@@ -37,7 +37,7 @@ class EventView(ViewSet):
         Returns:
             Response -- JSON serialized event record
         """
-        organizer = User.objects.get(pk=request.data["organizer"])
+        organizer = Gamer.objects.get(user=request.auth.user)
         game = Game.objects.get(pk=request.data["game"])
 
         new_event = Event()
@@ -48,7 +48,7 @@ class EventView(ViewSet):
         new_event.location = request.data["location"]
         new_event.save()
 
-        serialized = EventSerializer(letteeventr, many=False)
+        serialized = EventSerializer(new_event, many=False)
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
 
