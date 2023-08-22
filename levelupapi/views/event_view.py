@@ -57,12 +57,14 @@ class EventView(ViewSet):
         Returns:
             Response -- Empty body with 204 status code
         """
+        organizer = Gamer.objects.get(user=request.auth.user)
+        game = Game.objects.get(pk=request.data["game"])
 
         event = Event.objects.get(pk=pk)
         event.title = request.data["title"]
         event.date_time = request.data["date_time"]
-        event.organizer = Gamer.objects.get(user=request.auth.user)
-        event.game = Game.objects.get(pk=request.data["game"])
+        event.organizer = organizer
+        event.game = game
         event.location = request.data["location"]
         event.save()
 
